@@ -1,8 +1,4 @@
 //Cn=Co*(1+i)^n
-let redondear = (termino, cifras) => {
-    let factor = Math.pow(10, cifras);
-    return Math.round(termino * factor) / factor;
-}
 
 let capitalInicial = (capitalFinal, interes, tiempo) => {
     let result = capitalFinal / Math.pow((1 + interes),tiempo);
