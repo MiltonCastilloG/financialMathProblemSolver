@@ -1,13 +1,5 @@
 var questionsAnswers = [];
-let operaciones = ["Capitalizacion", "Descuento", "Sustitucion de capitales", "Equivalencia de intereses"];
-let subOperaciones = [
-    ["Simple", "Compuesta"],
-    ["Simple", "Compuesto"]
-];
-let operacionEspecifica = [
-    ["Capital inicial", "Capital final", "% Interes", "Tiempo"],
-    ["Racional", "Comercial", "% Descuento", "Tiempo"],
-];
+
 let apuntes, calculo = 0;
 $("#Texto").on('click', (e) => {
     apuntes++;
@@ -35,6 +27,39 @@ function getOperaciones(operacion, arrayButtons) {
     return result;
 }
 
+function parseJSONFirst(operacion) {
+    let result = "";
+    operaciones.forEach((obj, i) => {
+        result += `<button type="button" class="btn btn-outline-success ${operacion}" value="${i}">${obj["nombre"]}</button>`;
+    });
+    return result;
+}
+function parseJSONSecond(operacion, jsonKey) {
+    let result = "";
+    operaciones[jsonKey]["subTipos"].forEach((obj, i) => {
+        result += `<button type="button" class="btn btn-outline-success ${operacion}" attr-key1="${jsonKey}" attr-key2="${i}">${obj["nombre"]}</button>`;
+    });
+    return result;
+}
+function parseJSONThird(operacion, jsonKey1, jsonKey2) {
+    let result = "";
+    operaciones[jsonKey1]["subTipos"][jsonKey2]["variables"].forEach((obj, i) => {
+        result += `<button type="button" class="btn btn-outline-success ${operacion}" attr-key1="${jsonKey1}" attr-key2="${jsonKey2}" value="${obj["nombre"]}">${obj["nombre"]}</button>`;
+    });
+    return result;
+}
+function parseJSONLast(jsonKey1, jsonKey2, selectedVar) {
+    let result = "";
+    operaciones[jsonKey1]["subTipos"][jsonKey2]["variables"].forEach((obj, i) => {
+        if(selectedVar!=obj["nombre"])
+            result += `<div class="input-group-prepend">
+            <span class="input-group-text">${obj["nombre"]}</span>
+          </div>
+          <input type="text" aria-label="First name" class="form-control" require></input>`;;
+    });
+    return result;
+}
+
 $("#Calculo").on('click', (e) => {
     let operacionS = "";
     calculo++;
@@ -43,7 +68,7 @@ $("#Calculo").on('click', (e) => {
     <button class="btn btn-outline-danger eliminarCalculo" type="button" id="eliminarCalculo${calculo}" value="${calculo}">Eliminar</button><br/><br/>
     <div class="btn-group" role="group" aria-label="Basic example" id="operaciones">
         ${
-            getOperaciones("operacion",operaciones)
+            parseJSONFirst("operacion",operaciones)
         }
     </div>
   </li>`);
@@ -52,50 +77,45 @@ $("#Calculo").on('click', (e) => {
     });
     $(".operacion").on('click', (e) => {
         operacionS = e.currentTarget.value;
+        let buttonTextSecond = $(e.currentTarget).text();
         $("#operaciones").remove();
         $(`#calculo${calculo}`).append(`
         <nav aria-label="breadcrumb">
         <ol class="breadcrumb" id="operacionSelect${calculo}">
-          <li class="breadcrumb-item active" aria-current="page">${operaciones[operacionS]}</li>
+          <li class="breadcrumb-item active" aria-current="page">${buttonTextSecond}</li>
         </ol>
       </nav>
       <div class="btn-group" role="group" aria-label="Basic example" id="operaciones">
-        ${getOperaciones("operacionS",subOperaciones[operacionS])}
+        ${parseJSONSecond("operacionS",operacionS)}
       </div>
       `);
         $(".operacionS").on('click', (e) => {
-            let operacionSub = e.currentTarget.value;
+            let firstKey = $(e.currentTarget).attr("attr-key1");
+            let secondKey = $(e.currentTarget).attr("attr-key2");
+            let buttonTextThird = $(e.currentTarget).text();
             $("#operaciones").remove();
             $(`#operacionSelect${calculo}`).append(`
-            <li class="breadcrumb-item active" aria-current="page">${subOperaciones[operacionS][operacionSub]}</li>
+            <li class="breadcrumb-item active" aria-current="page">${buttonTextThird}</li>
             `);
             $(`#calculo${calculo}`).append(`<div class="btn-group" role="group" aria-label="Basic example" id="operaciones">
-            ${getOperaciones("operacionE",operacionEspecifica[operacionSub])}
+            ${parseJSONThird("operacionE",firstKey, secondKey)}
         </div>`);
             $(".operacionE").on('click', (e) => {
-                let operacionEs = e.currentTarget.value;
+                let selectedVar = e.currentTarget.value;
+                let firstKey = $(e.currentTarget).attr("attr-key1");
+                let secondKey = $(e.currentTarget).attr("attr-key2");
+                let buttonTextLast = $(e.currentTarget).text();
                 $("#operaciones").remove();
                 $(`#operacionSelect${calculo}`).append(`
-                <li class="breadcrumb-item active" aria-current="page">${operacionEspecifica[operacionS][operacionEs]}</li>
+                <li class="breadcrumb-item active" aria-current="page">${buttonTextLast}</li>
                 `);
                 $(`#calculo${calculo}`).append(`<div class="input-group">
-                    ${setFormulario(operacionEspecifica[operacionS],operacionEspecifica[operacionS][operacionEs])}
+                    ${parseJSONLast(firstKey,secondKey,selectedVar)}
               </div>`);
             });
         });
     });
 });
-
-function setFormulario(opciones, valorACalcular){
-    let formulario = "";
-    opciones.filter( o => o != valorACalcular).forEach(o => {
-        formulario +=`<div class="input-group-prepend">
-        <span class="input-group-text">${o}</span>
-      </div>
-      <input type="text" aria-label="First name" class="form-control" require></input>`;
-    })
-    return formulario;
-}
 
 $("#returnToFirst").click(function (e) {
     $("#firstContainer").css("display", "block");
