@@ -5,76 +5,100 @@
   <meta charset="UTF-8">
   <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
   <link rel="stylesheet" href="./common/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./common/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="./common/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="./css/index.css">
   <script src="./common/js/jquery.min.js"></script>
   <script src="./common/js/bootstrap.min.js"></script>
-  <title>Fi. Math aid</title>
+  <title>Fi. Math Calculator</title>
 </head>
-<body class="container">
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <h1>Fi. Math aid</h1>
-        </a>
-      </nav>
-    <div id="firstContainer">
-        <div id="insertQuestions" style="padding-bottom: 10px;">
-          <div class="row">
-            <div class="col-sm-12" >
-              <h2 class="title">Insert questions and answers</h2>
-            </div>
-              <div class="col-sm-4 navContainer">
-                  <nav class="navbar navbar-default sidebar" role="navigation">
-                        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-                          <ul class="nav navbar-nav" id="ulQuestions">
-                            <li>
-                              <a>Aca apareceran todas las preguntas que hagas, haz click en ellas para modificarlas</a>
-                            </li>          
-                          </ul>
-                        </div>
-                    </nav>
-                </div>
-                <div class="col-sm-8">
-                    <div class="row" style="padding-bottom: 10px;">
-                      <div class="col-sm-12">
-                        <a class="btn btn-warning" id="selectJSON" style="width: 100%">Load JSON</a>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <textarea rows='4' col='50' class='newQuestion' id='newQuestion' style="width:100%;"></textarea>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <input type='text' class='newAnswer' id='newAnswer'>
-                      </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                      <div class="col-sm-8" id="buttonContainer">
-                        <a class="btn btn-primary" id="addQuestion">Add Question</a>
-                      </div>
-                      <a class="btn btn-danger" id="saveSet" style="float: right">Save set</a>
-                    </div>
-                </div>
-          </div>
+
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <h1>Financial Mathematics Calculator</h1>
+  </nav>
+  <br />
+  <br />
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="card">
+          <ul id="Cuaderno" class="list-group list-group-flush"></ul>
         </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <a class="btn btn-success" id="startGame" style="width: 100%;">Go to game</a>
+        <li class="list-group-item">
+          <button id="Texto" type="button" class="btn btn-outline-secondary">+ Apunte</button>
+          <button id="Calculo" type="button" class="btn btn-outline-info">+ Calculo</button>
+        </li>
+      </div>
+      <div class="col-lg-2">
+          <nav class="navbar navbar-dark bg-dark">
+              <h5 class="text-white">Historial</h5>
+            </nav>
+          <ul id="Historial" class="list-group list-group-flush"></ul>
+      </div>
+    </div>
+  </div>
+  <div id="firstContainer">
+    <div id="insertQuestions" style="padding-bottom: 10px;">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="title">Insert questions and answers</h2>
+        </div>
+        <div class="col-sm-4 navContainer">
+          <nav class="navbar navbar-default sidebar" role="navigation">
+            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+              <ul class="nav navbar-nav" id="ulQuestions">
+                <li>
+                  <a>Aca apareceran todas las preguntas que hagas, haz click en ellas para modificarlas</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div class="col-sm-8">
+          <div class="row" style="padding-bottom: 10px;">
+            <div class="col-sm-12">
+              <a class="btn btn-warning" id="selectJSON" style="width: 100%">Load JSON</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <textarea rows='4' col='50' class='newQuestion' id='newQuestion' style="width:100%;"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <input type='text' class='newAnswer' id='newAnswer'>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-8" id="buttonContainer">
+              <a class="btn btn-primary" id="addQuestion">Add Question</a>
+            </div>
+            <a class="btn btn-danger" id="saveSet" style="float: right">Save set</a>
           </div>
         </div>
       </div>
-    <div id="secondContainer" style="display: none">
-      <h2 class="title"><a href="#" style="color: #AD2A1A; text-decoration: none" id="returnToFirst">&#8617</a> Responde el questionario</h2>
-      <div id="gameMain"></div>
     </div>
-  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <div class="row">
+      <div class="col-sm-12">
+        <a class="btn btn-success" id="startGame" style="width: 100%;">Go to game</a>
+      </div>
+    </div>
+  </div>
+  <div id="secondContainer" style="display: none">
+    <h2 class="title"><a href="#" style="color: #AD2A1A; text-decoration: none" id="returnToFirst">&#8617</a> Responde
+      el questionario</h2>
+    <div id="gameMain"></div>
+  </div>
+  <script>
+    if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }
+  </script>
   <script src="./js/index.js"></script>
-  <script type="text/javascript" src="./js/utils.js"></script>
-  <script type="text/javascript" src="./js/capitalizacionSimple.js"></script>
-  <script type="text/javascript" src="./js/capitalizacionCompuesta.js"></script>
-  <script type="text/javascript" src='./js/descuentoSimple.js'></script>
-  <script type='text/javascript' src='./js/descuentoCompuesto.js'></script>
 </body>
+
 </html>
