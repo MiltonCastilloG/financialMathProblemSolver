@@ -50,14 +50,29 @@ function parseJSONThird(operacion, jsonKey1, jsonKey2) {
 }
 function parseJSONLast(jsonKey1, jsonKey2, selectedVar) {
     let result = "";
+    let functionToUse = "";
     operaciones[jsonKey1]["subTipos"][jsonKey2]["variables"].forEach((obj, i) => {
-        if(selectedVar!=obj["nombre"])
+        if(selectedVar==obj["nombre"])
+            functionToUse = obj["function"];
+        else{
             result += `<div class="input-group-prepend">
             <span class="input-group-text">${obj["nombre"]}</span>
           </div>
-          <input type="text" aria-label="First name" class="form-control" require></input>`;;
+          <input type="text" class="calculo${calculo}" attr-name="${obj["nombre_var"]}" aria-label="First name" class="form-control" require>`;
+        }
     });
+    result += `<button class='btn btn-primary' onClick='sendToFunction(${functionToUse}, ${calculo})'>Respuesta</button>`;
     return result;
+}
+
+function sendToFunction(functionToUse, iCalculo){
+    let varname = [];
+    let objArray = $(".calculo"+iCalculo);
+    objArray.each(function() {
+        varname[$(this).attr("attr-name")] = $(this).val();
+    });
+    varname = Object.assign({}, varname);
+    console.log(functionToUse(varname));
 }
 
 $("#Calculo").on('click', (e) => {

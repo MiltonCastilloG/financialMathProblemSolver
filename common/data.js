@@ -6,32 +6,40 @@ const operaciones = [
                 "nombre": "Simple",
                 "variables": [{
                     "nombre": "Capital inicial",
-                    "funcion": "cCapitalInicial"
+                    "function": "cCapitalInicial",
+                    "nombre_var": "capitalInicial"
                 }, {
                     "nombre": "Capital final",
-                    "funcion": "cCapitalFinal"
+                    "function": "cCapitalFinal",
+                    "nombre_var": "capitalFinal"
                 }, {
                     "nombre": "% Interes",
-                    "function": "cInteres"
+                    "function": "cInteres",
+                    "nombre_var": "interes"
                 }, {
                     "nombre": "Tiempo",
-                    "function": "cTiempo"
+                    "function": "cTiempo",
+                    "nombre_var": "tiempo"
                 }]
             },
             {
                 "nombre": "Compuesta",
                 "variables": [{
                     "nombre": "Capital inicial",
-                    "function": "CCapitalInicial"
+                    "function": "CCapitalInicial",
+                    "nombre_var": "capitalInicial"
                 }, {
                     "nombre": "Capital final",
-                    "function": "CCapitalFinal"
+                    "function": "CCapitalFinal",
+                    "nombre_var": "capitalFinal"
                 }, {
                     "nombre": "% Interes",
-                    "function": "CInteres"
+                    "function": "CInteres",
+                    "nombre_var": "interes"
                 }, {
                     "nombre": "Tiempo",
-                    "function": "CTiempo"
+                    "function": "CTiempo",
+                    "nombre_var": "tiempo"
                 }]
             }
         ],
@@ -44,16 +52,20 @@ const operaciones = [
                 "nombre": "Simple Racional",
                 "variables": [{
                         "nombre": "Capital inicial",
-                        "function": "cCapitalInicial"
+                        "function": "cCapitalInicial",
+                        "nombre_var": "capitalInicial"
                     }, {
                         "nombre": "Capital final",
-                        "function": "cCapitalFinal"
+                        "function": "cCapitalFinal",
+                        "nombre_var": "capitalFinal"
                     }, {
                         "nombre": "% Interes",
-                        "function": "cInteres"
+                        "function": "cInteres",
+                        "nombre_var": "interes"
                     }, {
                         "nombre": "Tiempo",
-                        "function": "cTiempo"
+                        "function": "cTiempo",
+                        "nombre_var": "tiempo"
                     }
                 ]
             },
@@ -61,55 +73,87 @@ const operaciones = [
                 "nombre": "Simple Comercial",
                 "variables": [
                     {
-                        "nombre": "Racional",
-                        "function": "DCapitalInicial"
+                        "nombre": "Capital Inicial",
+                        "function": "dCapitalInicial",
+                        "nombre_var": "capitalInicial"
                     }, {
-                        "nombre": "Comercial",
-                        "function": "DCapitalFinal"
+                        "nombre": "Capital Final",
+                        "function": "dCapitalFinal",
+                        "nombre_var": "capitalFinal"
                     }, {
                         "nombre": "% Descuento",
-                        "function": "DTipoDescuento"
+                        "function": "dTipoDescuento",
+                        "nombre_var": "tipoDescuento"
                     }, {
                         "nombre": "Tiempo",
-                        "function": "DTiempo"
+                        "function": "dTiempo",
+                        "nombre_var": "tiempo"
                     }
                 ]
             },
             {
-                "nombre": "Compuesto Simple",
-                "variables": [{
-                        "nombre": "Capital inicial",
-                        "function": "CCapitalInicial"
+                "nombre": "Compuesto Comercial",
+                "variables": [
+                    {
+                        "nombre": "Capital Inicial",
+                        "function": "DCapitalInicial",
+                        "nombre_var": "capitalInicial"
                     }, {
-                        "nombre": "Capital final",
-                        "function": "CCapitalFinal"
+                        "nombre": "Capital Final",
+                        "function": "DCapitalFinal",
+                        "nombre_var": "capitalFinal"
                     }, {
-                        "nombre": "% Interes",
-                        "function": "CInteres"
+                        "nombre": "% Descuento",
+                        "function": "DTipoDescuento",
+                        "nombre_var": "tipoDescuento"
                     }, {
                         "nombre": "Tiempo",
-                        "function": "CTiempo"
+                        "function": "DTiempo",
+                        "nombre_var": "tiempo"
                     }
                 ]
             },
             {
                 "nombre": "Compuesto Racional",
-                "variables": [
-                    {
-                        "nombre": "Racional",
-                        "function": "DCapitalInicial"
+                "variables": [{
+                        "nombre": "Capital inicial",
+                        "function": "CCapitalInicial",
+                        "nombre_var": "capitalInicial"
                     }, {
-                        "nombre": "Comercial",
-                        "function": "DCapitalFinal"
+                        "nombre": "Capital final",
+                        "function": "CCapitalFinal",
+                        "nombre_var": "capitalFinal"
                     }, {
-                        "nombre": "% Descuento",
-                        "function": "DTipoDescuento"
+                        "nombre": "% Interes",
+                        "function": "CInteres",
+                        "nombre_var": "interes"
                     }, {
                         "nombre": "Tiempo",
-                        "function": "DTiempo"
+                        "function": "CTiempo",
+                        "nombre_var": "tiempo"
                     }
                 ]
             },        
         ],
+    },
+    {
+        "nombre": "Tantos Equivalentes",
+        "subTipos": [
+            {
+                "nombre": "TAE",
+                "variables": [
+                    {
+                        "nombre": "Tiempo",
+                        "function": "CTiempo",
+                        "nombre_var": "tiempo"
+                    }
+                ]
+            },
+            {
+                "nombre": "Tiempo",
+                "function": "CTiempo",
+                "nombre_var": "tiempo" 
+            }
+        ]
     }
 ];
