@@ -9,88 +9,37 @@
   <link rel="stylesheet" href="./common/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="./css/index.css">
   <script src="./common/js/jquery.min.js"></script>
+  <script src="./common/js/jquery-ui.min.js"></script>
   <script src="./common/js/bootstrap.min.js"></script>
   <title>Fi. Math Calculator</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-ligth bg-light">
     <h1>Financial Mathematics Calculator</h1>
   </nav>
   <br />
-  <br />
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-10">
+      <div class="col-sm-9">
+        <nav class="navbar navbar-dark bg-dark text-white">
+          <h3>Cuaderno</h3>
+        </nav>
         <div class="card">
           <ul id="Cuaderno" class="list-group list-group-flush"></ul>
         </div>
-        <li class="list-group-item">
-          <button id="Texto" type="button" class="btn btn-outline-secondary">+ Apunte</button>
-          <button id="Calculo" type="button" class="btn btn-outline-info">+ Calculo</button>
+        <li class="list-group-item bg-dark">
+          <button id="Texto" type="button" class="btn btn-outline-light">+ Apunte</button>
+          <button id="Calculo" type="button" class="btn btn-outline-light">+ Calculo</button>
         </li>
       </div>
-      <div class="col-sm-2">
-          <nav class="navbar navbar-dark bg-dark">
-              <h5 class="text-white">Historial</h5>
-            </nav>
-          <ul id="Historial" class="list-group list-group-flush"></ul>
+      <div class="col-sm-3">
+        <nav class="navbar navbar-ligth bg-light">
+          <h5>Historial</h5>
+        </nav>
+        <ul id="Historial" class="list-group list-group-flush"></ul>
       </div>
     </div>
-  </div>
-  <div id="firstContainer">
-    <div id="insertQuestions" style="padding-bottom: 10px;">
-      <div class="row">
-        <div class="col-sm-12">
-          <h2 class="title">Insert questions and answers</h2>
-        </div>
-        <div class="col-sm-4 navContainer">
-          <nav class="navbar navbar-default sidebar" role="navigation">
-            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-              <ul class="nav navbar-nav" id="ulQuestions">
-                <li>
-                  <a>Aca apareceran todas las preguntas que hagas, haz click en ellas para modificarlas</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-        <div class="col-sm-8">
-          <div class="row" style="padding-bottom: 10px;">
-            <div class="col-sm-12">
-              <a class="btn btn-warning" id="selectJSON" style="width: 100%">Load JSON</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <textarea rows='4' col='50' class='newQuestion' id='newQuestion' style="width:100%;"></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <input type='text' class='newAnswer' id='newAnswer'>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-8" id="buttonContainer">
-              <a class="btn btn-primary" id="addQuestion">Add Question</a>
-            </div>
-            <a class="btn btn-danger" id="saveSet" style="float: right">Save set</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <a class="btn btn-success" id="startGame" style="width: 100%;">Go to game</a>
-      </div>
-    </div>
-  </div>
-  <div id="secondContainer" style="display: none">
-    <h2 class="title"><a href="#" style="color: #AD2A1A; text-decoration: none" id="returnToFirst">&#8617</a> Responde
-      el questionario</h2>
-    <div id="gameMain"></div>
   </div>
   <script>
     if (typeof module === 'object') {
