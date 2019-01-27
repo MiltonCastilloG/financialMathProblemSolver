@@ -5,7 +5,7 @@ $("#Texto").on('click', (e) => {
     apuntes++;
     $("#Cuaderno").append(`<li class="list-group-item" id="apunte${apuntes}">
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Apunte" aria-label="Apunte de tu ejercicio" aria-describedby="Apunte">
+      <textarea type="text" class="form-control" placeholder="Apunte" aria-label="Apunte de tu ejercicio" aria-describedby="Apunte"></textarea>
       <div class="input-group-append">
         <button class="btn btn-outline-danger eliminarApunte" type="button" id="eliminarApunte${apuntes}" value="${apuntes}"> Eliminar</button>
       </div>
