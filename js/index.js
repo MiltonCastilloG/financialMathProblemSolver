@@ -180,13 +180,15 @@ $("#Calculo").on('click', (e) => {
                 $("#dropInput input").droppable({
                     drop: function (event, ui) {
                         let destino = $(this)[0].classList[2];
+                        let vacio = !$(this)[0].readOnly;
                         let result = ui.draggable.text().replace(/\s/g, '');
                         result = parseFloat(result);
                         $(this).css('background', '');
-                        $(`.${destino}`).val(result);
+                        vacio && $(`.${destino}`).val(result);
                     },
                     over: function (event, ui) {
-                        $(this).css('background', 'rgb(0,200,0)');
+                        let vacio = !$(this)[0].readOnly;
+                        vacio && $(this).css('background', 'rgb(0,200,0)');
                     },
                     out: function (event, ui) {
                         $(this).css('background', '');
