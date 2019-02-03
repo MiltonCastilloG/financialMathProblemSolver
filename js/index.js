@@ -1,17 +1,17 @@
 let apuntes, calculo = 0;
-$("#Texto").on('click', (e) => {
-    apuntes++;
-    $("#Cuaderno").append(`<li class="list-group-item" id="apunte${apuntes}">
-    <button class="btn btn-outline-danger eliminarApunte eliminar" type="button" id="eliminarApunte${apuntes}" value="${apuntes}"> Eliminar</button><br/><br/>
-    <div class="input-group mb-3">
-      <textarea type="text" class="form-control" placeholder="Apunte" aria-label="Apunte de tu ejercicio" aria-describedby="Apunte"></textarea>      
-    </div>
-    </li>
-    `);
-    $(".eliminarApunte").on('click', (e) => {
-        $(`#apunte${e.currentTarget.value}`).remove();
-    });
-});
+// $("#Texto").on('click', (e) => {
+//     apuntes++;
+//     $("#Cuaderno").append(`<li class="list-group-item" id="apunte${apuntes}">
+//     <button class="btn btn-outline-danger eliminarApunte eliminar" type="button" id="eliminarApunte${apuntes}" value="${apuntes}"> Eliminar</button><br/><br/>
+//     <div class="input-group mb-3">
+//       <textarea type="text" class="form-control" placeholder="Apunte" aria-label="Apunte de tu ejercicio" aria-describedby="Apunte"></textarea>      
+//     </div>
+//     </li>
+//     `);
+//     $(".eliminarApunte").on('click', (e) => {
+//         $(`#apunte${e.currentTarget.value}`).remove();
+//     });
+// });
 
 function getOperaciones(operacion, arrayButtons) {
     let result = "";
@@ -109,7 +109,7 @@ function addHistorial(result, iCalculo) {
     $("#Historial").append(`<li class="list-group-item text-secondary" id=resultado${iCalculo} value=${nombre}>
         <div class="card border-secondary">
         <div class="card-header card-text tituloHistorial">${nombre}</div>
-            <div class="card-body" id=result${iCalculo}>
+            <div class="card-body historialCard" id=result${iCalculo}>
                 <p class="card-text">${result}</p>
             </div>
         </div>
@@ -120,23 +120,18 @@ function addHistorial(result, iCalculo) {
     });
 }
 
-$("#Calculo").on('click', (e) => {
+function initCalculoOptions(){
+    $("#Cuaderno").empty();
     let operacionS = "";
     let operacionName = [];
     calculo++;
-    $("#Cuaderno").append(`<li class="list-group-item" id="calculo${calculo}">
-    <button class="btn btn-outline-danger eliminarCalculo eliminar" type="button" id="eliminarCalculo${calculo}" value="${calculo}">Eliminar</button><br/>
+    $("#Cuaderno").append(`<li class="list-group-item" id="calculo${calculo}"><br/>
     <div class="btn-group" role="group" aria-label="Basic example" id="operaciones">
         ${
             parseJSONFirst("operacion",operaciones)
         }   
     </div>
   </li>`);
-    $(".eliminarCalculo").on('click', (e) => {
-        let itemToDelete = e.currentTarget.value
-        $(`#resultado${itemToDelete}`).remove();
-        $(`#calculo${itemToDelete}`).remove();
-    });
     $(".operacion").on('click', (e) => {
         operacionS = e.currentTarget.value;
         let buttonTextSecond = $(e.currentTarget).text();
@@ -198,4 +193,12 @@ $("#Calculo").on('click', (e) => {
             });
         });
     });
+};
+
+$("#regresar").on('click', (e) => {
+    initCalculoOptions();
+});
+
+$(document).ready(function() {
+    initCalculoOptions();
 });

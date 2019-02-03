@@ -10,7 +10,7 @@ nav.sidebar .navbar-header {
 }
 
 .tituloHistorial{
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .centro {
@@ -80,4 +80,12 @@ nav ul {
 .aQuestion:hover {
   text-decoration: none;
   color: #000;
+}
+
+.historialCard {
+  padding: 0.5rem;
+}
+
+.historialCard p {
+  font-size: 12px;
 }
