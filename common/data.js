@@ -135,25 +135,5 @@ const operaciones = [
                 ]
             },        
         ],
-    },
-    {
-        "nombre": "Tantos Equivalentes",
-        "subTipos": [
-            {
-                "nombre": "TAE",
-                "variables": [
-                    {
-                        "nombre": "Tiempo",
-                        "function": "CTiempo",
-                        "nombre_var": "tiempo"
-                    }
-                ]
-            },
-            {
-                "nombre": "Tiempo",
-                "function": "CTiempo",
-                "nombre_var": "tiempo" 
-            }
-        ]
     }
 ];
